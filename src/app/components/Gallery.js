@@ -1,28 +1,37 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Gallery() {
   const images = [
     {
       src: "/images/engine.png",
       alt: "Engine Parts",
+      url: "/products?type=Engine",
     },
     {
       src: "/images/transmission.png",
       alt: "Transmission",
+      url: "/products?type=Transmission",
     },
     {
       src: "/images/drive-shaft.png",
       alt: "Drive Shaft",
+      url: "/products?type=Drive Shaft & Axles",
     },
     {
       src: "/images/bumper.png",
       alt: "Bumpers",
+      url: "/products?type=Bumpers",
     },
     {
       src: "/images/fender.png",
       alt: "Fenders",
+      url: "/products?type=Fenders",
     },
     {
       src: "/images/doors.png",
       alt: "Doors",
+      url: "/products?type=Doors",
     },
   ];
 
@@ -42,21 +51,25 @@ export default function Gallery() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {images.map((image, index) => (
-            <div
-              key={index}
-              className="group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-4 bg-white">
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary duration-300">
-                  {image.alt}
-                </h3>
+            <Link href={image.url}>
+              <div
+                key={index}
+                className="group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+              >
+                <Image
+                  width={300}
+                  height={300}
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="p-4 bg-white">
+                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary duration-300">
+                    {image.alt}
+                  </h3>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
