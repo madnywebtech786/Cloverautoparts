@@ -1,5 +1,5 @@
 // app/components/WhyChooseUs.jsx
-export default function WhyChooseUs() {
+export default function WhyChooseUs({ page = false }) {
   const features = [
     {
       title: "Premium Quality Parts",
@@ -27,7 +27,9 @@ export default function WhyChooseUs() {
   return (
     <section
       id="services"
-      className="p-4 md:p-8 lg:p-12 2xl:p-16 bg-gradient-to-r from-red-50 to-white"
+      className={`p-4 md:p-8 lg:p-12 2xl:p-16 ${
+        page ? "bg-white" : "bg-gradient-to-r from-red-50 to-white"
+      } `}
     >
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -45,13 +47,27 @@ export default function WhyChooseUs() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-lg text-center hover:shadow-lg transition-shadow"
+              className={`bg-white p-8 rounded-lg text-center ${
+                page ? "shadow-lg hover:bg-primary" : ""
+              } hover:shadow-xl   transition-shadow group`}
             >
-              <div className="text-primary text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <div className={`text-primary text-4xl mb-4 `}>
+                {feature.icon}
+              </div>
+              <h3
+                className={`text-xl font-bold text-gray-900 mb-3 ${
+                  page ? "group-hover:!text-white" : ""
+                }`}
+              >
                 {feature.title}
               </h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <p
+                className={`text-gray-600 ${
+                  page ? "group-hover:text-white" : ""
+                }`}
+              >
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
